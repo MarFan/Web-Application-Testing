@@ -1,0 +1,39 @@
+import React from 'react';
+import { Grid, Header, Button, Label } from 'semantic-ui-react';
+
+const Display = (props) => {
+    return (
+        <Grid>
+            <Grid.Row>
+                <Grid.Column width={16}>
+                    <Header as="h1">Play Ball!
+                        <Header.Subheader>
+                            {props.actionMsg}
+                        </Header.Subheader>
+                    </Header>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+                <Grid.Column width={5}>    
+                    <div>
+                        <Button as="div" labelPosition="right" style={{width: '100%', fontSize: '1.5rem'}} data-testid="awayTeam">
+                            <Button basic color="blue" fluid>Lions</Button>
+                            <Label as="a" color="blue" pointing="left">{props.scoreboard.away}</Label>
+                        </Button>
+                    </div>
+                    <div>
+                        <Button as="div" labelPosition="right" style={{width: '100%', fontSize: '1.5rem'}} data-testid="homeTeam">
+                            <Button basic color="yellow" fluid>Tigers</Button>
+                            <Label as="a" color="yellow" pointing="left">{props.scoreboard.home}</Label>
+                        </Button>
+                    </div>
+                </Grid.Column>
+                <Grid.Column width={1}>
+                    <div data-testid="atbatstats" style={{fontSize: '2rem'}}>{props.scoreboard.strike} - {props.scoreboard.ball}</div>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
+    )
+} 
+
+export default Display;
