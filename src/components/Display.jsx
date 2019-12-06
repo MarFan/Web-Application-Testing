@@ -1,7 +1,20 @@
 import React from 'react';
-import { Grid, Header, Button, Label } from 'semantic-ui-react';
+import { Grid, Header, Button, Label, Divider, Icon } from 'semantic-ui-react';
 
 const Display = (props) => {
+    let inningIcon;
+    if(props.scoreboard.inningHalf) {
+        inningIcon = 'angle down';
+    } else {
+        inningIcon = 'angle up';
+    }
+
+    const inningOuts = [];
+
+    for(let i=0; i < 3; i++){
+        inningOuts.push("<Icon name='circle outline' />")
+    }
+
     return (
         <Grid>
             <Grid.Row>
@@ -28,8 +41,23 @@ const Display = (props) => {
                         </Button>
                     </div>
                 </Grid.Column>
-                <Grid.Column width={1}>
+                <Grid.Column width={1} style={{fontSize: '2rem', textAlign: 'center'}}>
+                    <div>
+                        {props.scoreboard.inning}
+                    </div>
+                    <Divider />
+                    <div>
+                        <Icon name={inningIcon} />
+                    </div>
+                </Grid.Column>
+                <Grid.Column width={2} style={{textAlign: 'center'}}>
                     <div data-testid="atbatstats" style={{fontSize: '2rem'}}>{props.scoreboard.strike} - {props.scoreboard.ball}</div>
+                    <Divider />
+                    <div className="outs">
+                        <Icon name="circle outline" />
+                        <Icon name="circle outline" />
+                        <Icon name="circle outline" />
+                    </div>
                 </Grid.Column>
             </Grid.Row>
         </Grid>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 
+import { useLater } from './hooks/useLater';
+
 import { Container } from 'semantic-ui-react';
 
 import Dashboard from './components/Dashboard'
@@ -19,8 +21,8 @@ const initialValues = {
 
 function App() {
 
-  const [scoreboard, setScoreboard] = useState(initialValues);
-  const [actionMsg, setActionMsg] = useState("");
+  const [scoreboard, setScoreboard] = useLater(initialValues);
+  const [actionMsg, setActionMsg] = useState("Batter Up!");
 
   const updateBoard = action => {
     let actionInt = parseInt(scoreboard[action]) + 1;
@@ -34,6 +36,8 @@ function App() {
         break;
       case "foul":
         setActionMsg('Foul ball!')
+        break;
+      default:
         break;
     }
     
@@ -51,7 +55,9 @@ function App() {
         ball: 0
       })
     }else if(action === 'strike' && actionInt >= 3) {
-      setActionMsg('Stike 3! You\'re Out!');
+      setActionMsg('Strike 3! You\'re Out!');
+      scoreboard.outs = parseInt(scoreboard.outs) + 1;
+      console.log(scoreboard.outs)
       setScoreboard({
         ...scoreboard,
         strike: 0,

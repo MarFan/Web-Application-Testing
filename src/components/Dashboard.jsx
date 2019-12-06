@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { Button} from 'semantic-ui-react';
-
-import useLocalStorage from '../hooks/useLocalSotrage';
 
 const Dashboard = (props) => {
 
