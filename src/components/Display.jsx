@@ -10,9 +10,15 @@ const Display = (props) => {
     }
 
     const inningOuts = [];
-
+    console.log(props.scoreboard.outs)
     for(let i=0; i < 3; i++){
-        inningOuts.push("<Icon name='circle outline' />")
+        if(props.scoreboard.outs > i){
+            inningOuts.push(<Icon key={i} name='circle' />)
+        } else {
+            
+            inningOuts.push(<Icon key={i} name='circle outline' />)
+        }
+        
     }
 
     return (
@@ -54,9 +60,7 @@ const Display = (props) => {
                     <div data-testid="atbatstats" style={{fontSize: '2rem'}}>{props.scoreboard.strike} - {props.scoreboard.ball}</div>
                     <Divider />
                     <div className="outs">
-                        <Icon name="circle outline" />
-                        <Icon name="circle outline" />
-                        <Icon name="circle outline" />
+                        {inningOuts}
                     </div>
                 </Grid.Column>
             </Grid.Row>
